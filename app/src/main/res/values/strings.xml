@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Contacts that Matter</string>
+    <string name="find_contact">Find a Contact</string>
+    <string name="no_contact">Click on the search button at the top to find a contact that matters.</string>
+</resources>

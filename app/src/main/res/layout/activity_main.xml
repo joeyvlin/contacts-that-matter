@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.codepath.jlin.navigationdemo.MainActivity"
+    android:background="@android:color/white">
+
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/no_contact_view_padding"
+        android:paddingLeft="@dimen/main_horizontal_padding"
+        android:paddingRight="@dimen/main_horizontal_padding">
+
+        <TextView
+            android:id="@+id/tvNoContact"
+            android:layout_width="@dimen/no_contact_view_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/light_steel_blue_4"
+            android:textSize="@dimen/no_contact_text_size"
+            android:textAlignment="center"
+            android:visibility="visible"
+            android:text="@string/no_contact"/>
+
+        <LinearLayout
+            android:id="@+id/layoutContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/main_label_width"
+                    android:gravity="right"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/main_text_size"
+                    android:textColor="@color/light_steel_blue_4"
+                    android:text="Phone Number: "/>
+
+                <TextView
+                    android:id="@+id/tvNumber"
+                    android:layout_marginLeft="@dimen/main_horizontal_margin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/main_text_size"
+                    android:textColor="@android:color/black"
+                    tools:text="838-634-8345"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/main_vertical_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="@dimen/main_label_width"
+                    android:gravity="right"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/main_text_size"
+                    android:textColor="@color/light_steel_blue_4"
+                    android:text="Notes: "/>
+
+                <TextView
+                    android:id="@+id/tvNotes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/main_horizontal_margin"
+                    android:textSize="@dimen/main_text_size"
+                    android:textColor="@android:color/black"
+                    tools:text="This person is really awesome"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivCall"
+                android:layout_marginTop="@dimen/main_vertical_margin"
+                android:layout_gravity="center"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_call"/>
+
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>
