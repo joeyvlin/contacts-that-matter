@@ -13,8 +13,15 @@ import java.util.List;
 
 public class ContactAdapter extends ArrayAdapter<Contact> {
 
-    public ContactAdapter(Context context, int resource, List<Contact> contacts) {
+    private Listener mListener;
+
+    public static interface Listener {
+        void onClickContact(int position);
+    }
+
+    public ContactAdapter(Context context, Listener listener, int resource, List<Contact> contacts) {
         super(context, resource, contacts);
+        mListener = listener;
     }
 
     private static class ViewHolder {
@@ -22,7 +29,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         Contact contact = getItem(position);
         ViewHolder viewHolder;
         if (convertView == null) {
@@ -36,6 +43,14 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         }
 
         viewHolder.name.setText(contact.getName());
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onClickContact(position);
+                }
+            }
+        });
         return convertView;
     }
 

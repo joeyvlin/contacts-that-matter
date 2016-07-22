@@ -8,9 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codepath.jlin.navigationdemo.helper.DemoHelper;
@@ -19,7 +17,7 @@ import com.codepath.jlin.navigationdemo.model.Contact;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements ContactAdapter.Listener {
 
     List<Contact> mData = new ArrayList<>();
     ContactAdapter mAdapter;
@@ -33,23 +31,32 @@ public class SearchActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mData = DemoHelper.createContactList();
-        mAdapter = new ContactAdapter(this, R.layout.list_item, mData);
+        mAdapter = new ContactAdapter(this, this, R.layout.list_item, mData);
         mListView = (ListView) findViewById(R.id.lvContacts);
         mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Contact contact = mData.get(position);
-                Intent data = new Intent();
-                data.putExtra("contact", contact);
-                data.putExtra("code", MainActivity.REQUEST_CODE);
-                setResult(RESULT_OK, data);
-                finish();
-            }
-        });
+//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                finishActivityWithResult(position);
+//            }
+//        });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mListView.setNestedScrollingEnabled(true);
         }
+    }
+
+    private void finishActivityWithResult(int position) {
+        Contact contact = mData.get(position);
+        Intent data = new Intent();
+        data.putExtra("contact", contact);
+        data.putExtra("code", MainActivity.REQUEST_CODE);
+        setResult(RESULT_OK, data);
+        finish();
+    }
+
+    @Override
+    public void onClickContact(int position) {
+        finishActivityWithResult(position);
     }
 
     @Override
