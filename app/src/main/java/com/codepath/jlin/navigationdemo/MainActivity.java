@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -43,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         tvNoContact = (TextView) findViewById(R.id.tvNoContact);
         layoutNoContact = (LinearLayout) findViewById(R.id.layoutContact);
         ivSearch = (ImageView) findViewById(R.id.ivSearch);
@@ -117,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-            Contact contact = (Contact) data.getSerializableExtra("contact");
+            Contact contact = (Contact) data.getParcelableExtra("contact");
             if (contact != null) {
                 mCurrentContactSubject.onNext(contact);
             }
