@@ -40,9 +40,6 @@ public class SearchActivity extends AppCompatActivity implements ContactAdapter.
 //                finishActivityWithResult(position);
 //            }
 //        });
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mListView.setNestedScrollingEnabled(true);
-        }
     }
 
     private void finishActivityWithResult(int position) {

@@ -102,20 +102,14 @@ public class MainActivity extends AppCompatActivity {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
+                    // permission was granted
                     makeCall();
                 } else {
 
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+                    // permission denied
                 }
                 return;
             }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
         }
     }
 
@@ -123,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-            Contact contact = (Contact) data.getParcelableExtra("contact");
+            Contact contact = data.getParcelableExtra("contact");
             if (contact != null) {
                 mCurrentContactSubject.onNext(contact);
             }
@@ -136,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
         mSubscription = mCurrentContactSubject.subscribe(new Action1<Contact>() {
             @Override
             public void call(Contact contact) {
-                // Update page with new contact
                 tvSearch.setText(contact.getName());
                 hideNoContactView();
                 showContact(contact);
